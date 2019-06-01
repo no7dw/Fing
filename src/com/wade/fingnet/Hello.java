@@ -18,12 +18,17 @@ public class Hello {
                 Enumeration ee = networkInterface.getInetAddresses();
                 while (ee.hasMoreElements()) {
                     InetAddress i = (InetAddress) ee.nextElement();
-                    String addrInfo = i.getHostAddress() + " " + i.getHostName();
-                    System.out.println(addrInfo);
+                    String addrInfo = i.getHostAddress(); //+ " " + i.getHostName();
+                    NetworkInterface net = NetworkInterface.getByInetAddress(i);
+                    short n = net.getInterfaceAddresses().get(0).getNetworkPrefixLength();//0 IPV4 1 IPV6
+                    System.out.println(addrInfo+"/"+n);
                 }
+
             }
+
         }catch (SocketException e){
             System.out.println(e.getMessage());
         }
     }
 }
+//https://www.programcreek.com/java-api-examples/?class=java.net.InterfaceAddress&method=getNetworkPrefixLength
