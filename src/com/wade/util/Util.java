@@ -40,7 +40,7 @@ public class Util {
         Socket socket = null;
         try {
             System.out.println("connecting "+ host + " " + port);
-            socket = new Socket(host, port);
+            socket = new Socket();
             int timeout = 100;//ms
             socket.setSoTimeout(timeout);
             socket.connect(new InetSocketAddress(host,port), timeout);

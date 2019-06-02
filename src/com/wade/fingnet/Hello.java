@@ -1,11 +1,8 @@
 package com.wade.fingnet;
 
 
-import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
-import java.net.Socket;
 import java.net.SocketException;
 import java.util.Enumeration;
 import java.util.List;
@@ -32,13 +29,12 @@ public class Hello {
                     List<String> ipList = Util.genIp(addrInfo);
                     String[] arrayIpList = ipList.toArray(new String[ipList.size()]);
                     for (String subAddrInfo:arrayIpList) {
-                        for (int port = 1; port < 1024 ; port++) {
+                        for (int port = 80; port < 1024 ; port++) {
                             boolean open =  Util.testPortOpen(subAddrInfo, port);
                             if (open) {
                                 System.out.println(port + " is open" );
                             }
                         }
-
                     }
 
                 }
