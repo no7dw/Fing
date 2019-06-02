@@ -1,6 +1,7 @@
 package com.wade.util;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +41,12 @@ public class Util {
         try {
             System.out.println("connecting "+ host + " " + port);
             socket = new Socket(host, port);
+            int timeout = 100;//ms
+            socket.setSoTimeout(timeout);
+            socket.connect(new InetSocketAddress(host,port), timeout);
             return true;
         }catch (Exception e){
+            System.out.println(host + " may timeout");
             return false;
         }finally {
             try{socket.close();}
