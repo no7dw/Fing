@@ -49,8 +49,12 @@ public class Util {
             System.out.println(host + " may timeout");
             return false;
         }finally {
-            try{socket.close();}
-            catch (IOException e){}
+            if(socket != null) {
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                }
+            }
         }
     }
 }
