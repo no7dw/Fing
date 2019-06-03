@@ -32,12 +32,15 @@ public class Hello {
                     for (String subAddrInfo:arrayIpList) {
                         System.out.println(subAddrInfo);
                         //TODO first check well-known port , then other port
-                        for (int port = 80; port < 1024 ; port++) {
+                        //https://www.jiangyu.org/port-and-rtsp-address-of-several-ipcams/
+                        int[] ports = new int[]{80,443, 554, 3702, 5000, 8000, 8080,8899, 8554, 34567};
+                        for (int port : ports) {
                             boolean open =  Util.testPortOpen(subAddrInfo, port);
                             if (open) {
                                 System.out.println(port + " is open" );
                             }
                         }
+                        //TODO check RTSP
                     }
 
                 }
