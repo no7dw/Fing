@@ -1,4 +1,4 @@
-package com.wade.util;
+package com.wade.fing.util;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -23,7 +23,7 @@ public class Util {
         return false;
 
     }
-    public static List<String> genIp(String ip){
+    public static List<String> genSubnetIp(String ip){
         List<String> result = new ArrayList<String>();
         if(validIP(ip)){
             String[] a = ip.split("\\.");
@@ -39,14 +39,14 @@ public class Util {
         if(!validIP(host)) return false;
         Socket socket = null;
         try {
-            System.out.println("connecting "+ host + " " + port);
+//            System.out.println("connecting "+ host + " " + port);
             socket = new Socket();
             int timeout = 100;//ms
             socket.setSoTimeout(timeout);
             socket.connect(new InetSocketAddress(host,port), timeout);
             return true;
         }catch (Exception e){
-            System.out.println(host + " may timeout");
+//            System.out.println(host + " may timeout");
             return false;
         }finally {
             if(socket != null) {

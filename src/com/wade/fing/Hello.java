@@ -1,16 +1,15 @@
-package com.wade.fingnet;
-
+package com.wade.fing;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
 import java.util.List;
-
+import org.pcap4j.*;
 /**
  * Created by dengwei on 2019/6/1.
  */
-import com.wade.util.Util;
+import com.wade.fing.util.Util;
 public class Hello {
 
     public static void main(String[] args) {
@@ -26,9 +25,13 @@ public class Hello {
                     NetworkInterface net = NetworkInterface.getByInetAddress(i);
                     short n = net.getInterfaceAddresses().get(0).getNetworkPrefixLength();//0 IPV4 1 IPV6
                     System.out.println(addrInfo+"/"+n);
-                    List<String> ipList = Util.genIp(addrInfo);
+                    //TODO: use exists IPList instead of generate subnet ips
+                    //TODO: loop it in thread
+                    List<String> ipList = Util.genSubnetIp(addrInfo);
                     String[] arrayIpList = ipList.toArray(new String[ipList.size()]);
                     for (String subAddrInfo:arrayIpList) {
+                        System.out.println(subAddrInfo);
+                        //TODO first check well-known port , then other port
                         for (int port = 80; port < 1024 ; port++) {
                             boolean open =  Util.testPortOpen(subAddrInfo, port);
                             if (open) {
