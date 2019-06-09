@@ -29,6 +29,8 @@ public class Hello {
                     //TODO: loop it in thread
                     List<String> ipList = Util.genSubnetIp(addrInfo);
                     String[] arrayIpList = ipList.toArray(new String[ipList.size()]);
+                    //InetAddress addr=InetAddress.getByName(mynetworkips + new Integer(i).toString());
+                    //addr.isReachable(1000)
                     for (String subAddrInfo:arrayIpList) {
                         System.out.println(subAddrInfo);
                         //TODO first check well-known port , then other port
