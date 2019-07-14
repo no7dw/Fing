@@ -13,7 +13,6 @@ import com.wade.fing.util.Util;
 public class Hello {
 
     public static void main(String[] args) {
-        System.out.println("Hey Babe");
         try {
             Enumeration e = NetworkInterface.getNetworkInterfaces();
             while (e.hasMoreElements()) {
@@ -24,7 +23,7 @@ public class Hello {
                     String addrInfo = i.getHostAddress(); //+ " " + i.getHostName();
                     NetworkInterface net = NetworkInterface.getByInetAddress(i);
                     short n = net.getInterfaceAddresses().get(0).getNetworkPrefixLength();//0 IPV4 1 IPV6
-                    System.out.println(addrInfo+"/"+n);
+//                    System.out.println(addrInfo+"/"+n);
                     //TODO: use exists IPList instead of generate subnet ips
                     //TODO: loop it in thread
                     List<String> ipList = Util.genSubnetIp(addrInfo);
@@ -32,17 +31,18 @@ public class Hello {
                     //InetAddress addr=InetAddress.getByName(mynetworkips + new Integer(i).toString());
                     //addr.isReachable(1000)
                     for (String subAddrInfo:arrayIpList) {
-                        System.out.println(subAddrInfo);
                         //TODO first check well-known port , then other port
                         //https://www.jiangyu.org/port-and-rtsp-address-of-several-ipcams/
+                        //554 8554 rtsp
                         int[] ports = new int[]{80,443, 554, 3702, 5000, 8000, 8080,8899, 8554, 34567};
                         for (int port : ports) {
                             boolean open =  Util.testPortOpen(subAddrInfo, port);
                             if (open) {
-                                System.out.println(port + " is open" );
+                                System.out.println(subAddrInfo +" " + port +  " is open" );
                             }
                         }
                         //TODO check RTSP
+                        //TODO WIFI探针
                     }
 
                 }
@@ -55,3 +55,4 @@ public class Hello {
     }
 }
 //https://www.programcreek.com/java-api-examples/?class=java.net.InterfaceAddress&method=getNetworkPrefixLength
+//https://blog.csdn.net/qq_38880380/article/details/80652697
