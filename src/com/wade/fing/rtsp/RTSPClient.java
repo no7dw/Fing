@@ -9,7 +9,7 @@ import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class RTSPClient   implements Runnable, IEvent {
+public class RTSPClient implements Runnable, IEvent {
 
     private static final String VERSION = " RTSP/1.0/r/n";
     private static final String RTSP_OK = "RTSP/1.0 200 OK";

@@ -1,1 +1,1 @@
-# Fing device detector
+# Fing Hidden camera device detector
