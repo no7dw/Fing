@@ -7,10 +7,9 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
-import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class RTSPClient extends Thread implements IEvent {
+public class RTSPClient   implements Runnable, IEvent {
 
     private static final String VERSION = " RTSP/1.0/r/n";
     private static final String RTSP_OK = "RTSP/1.0 200 OK";
@@ -138,7 +137,6 @@ public class RTSPClient extends Thread implements IEvent {
         }
     }
 
-    @Override
     public void run() {
         // 启动主循环流程
         while (!shutdown.get()) {
@@ -231,7 +229,7 @@ public class RTSPClient extends Thread implements IEvent {
                     new InetSocketAddress("218.207.101.236", 554),
                     new InetSocketAddress("192.168.2.28", 0),
                     "rtsp://218.207.101.236:554/mobile/3/67A451E937422331/8jH5QPU5GWS07Ugn.sdp");
-            client.start();
+            new Thread(client).start();
             System.out.println(client.isSended);
         } catch (Exception e) {
             e.printStackTrace();
