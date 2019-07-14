@@ -181,6 +181,9 @@ public class RTSPClient extends Thread implements IEvent {
         }
     }
 
+    public void read(SelectionKey key) throws IOException {
+    }
+
     public void write() throws IOException {
         if (isConnected()) {
             try {

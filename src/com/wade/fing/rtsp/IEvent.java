@@ -17,5 +17,16 @@ public interface IEvent {
      * @throws IOException
      */
     void connect(SelectionKey key) throws IOException;
+    /** *//**
+     * 当channel可读时调用这个方法.
+     * @param key
+     * @throws IOException
+     */
+    void read(SelectionKey key) throws IOException;
 
+    /** *//**
+     * 当channel可写时调用这个方法.
+     * @throws IOException
+     */
+    void write() throws IOException;
 }
